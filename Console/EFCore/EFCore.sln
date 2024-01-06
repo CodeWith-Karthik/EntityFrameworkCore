@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34414.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodStop", "FoodStop\FoodStop.csproj", "{3C55FE04-CE29-4C21-92B2-B4A7D0EA216C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodStop_DB", "FoodStop_DB\FoodStop_DB.csproj", "{62877F93-5AA1-45FA-B8B2-236A1C303937}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3C55FE04-CE29-4C21-92B2-B4A7D0EA216C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C55FE04-CE29-4C21-92B2-B4A7D0EA216C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C55FE04-CE29-4C21-92B2-B4A7D0EA216C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62877F93-5AA1-45FA-B8B2-236A1C303937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62877F93-5AA1-45FA-B8B2-236A1C303937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62877F93-5AA1-45FA-B8B2-236A1C303937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62877F93-5AA1-45FA-B8B2-236A1C303937}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

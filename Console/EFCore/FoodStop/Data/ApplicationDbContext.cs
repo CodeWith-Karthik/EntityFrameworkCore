@@ -1,4 +1,5 @@
-﻿using FoodStop.Models;
+﻿using FoodStop.Configuration;
+using FoodStop.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,14 @@ namespace FoodStop.Data
             optionsBuilder
                 .UseSqlServer("Server=.;Database=FoodStopV2;Trusted_Connection=True;TrustServerCertificate=True");
         }
-    
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new BranchConfiguration());
+        }
+
         public DbSet<Branch> Branch { get; set; }
     }
 }
