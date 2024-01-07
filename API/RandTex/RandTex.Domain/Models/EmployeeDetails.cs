@@ -28,5 +28,20 @@ namespace RandTex.Domain.Models
         public string EmailAddress { get; set; }
         public string Address { get; set; }
 
+        public EmployeeDetails()
+        {
+            
+        }
+
+        public EmployeeDetails(int employeeId, int age, Gender gender, long phoneNo, string emailAddress, string address)
+        {
+            EmployeeId = employeeId;
+            Age = age;
+            Gender = gender;
+            PhoneNo = phoneNo;
+            EmailAddress = emailAddress;
+            Address = address;
+        }
+
     }
 }

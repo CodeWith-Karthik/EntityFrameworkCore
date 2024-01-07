@@ -30,6 +30,20 @@ namespace RandTex.Domain.Models
         [Range(1980,2100, ErrorMessage = "Employed year should be between 1980 to 2100 only")]
         public int EmployedFrom { get; set; }
 
-        public virtual EmployeeDetails EmployeeDetails { get; set; }    
+        public virtual EmployeeDetails EmployeeDetails { get; set; }
+
+        public Employee()
+        {
+            
+        }
+
+        public Employee(int departmentId, string firstName, string middlename, string lastName, int employedFrom)
+        {
+            DepartmentId = departmentId;
+            FirstName = firstName;
+            MiddleName = middlename;
+            LastName = lastName;
+            EmployedFrom = employedFrom;
+        }
     }
 }
