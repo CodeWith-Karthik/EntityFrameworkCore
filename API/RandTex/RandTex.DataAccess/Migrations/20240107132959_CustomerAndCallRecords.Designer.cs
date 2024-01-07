@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RandTex.DataAccess.Common;
 
@@ -11,9 +12,11 @@ using RandTex.DataAccess.Common;
 namespace RandTex.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240107132959_CustomerAndCallRecords")]
+    partial class CustomerAndCallRecords
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace RandTex.DataAccess.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("CallRecords", (string)null);
+                    b.ToTable("CallRecords");
                 });
 
             modelBuilder.Entity("RandTex.Domain.Models.Customer", b =>
@@ -68,7 +71,7 @@ namespace RandTex.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("RandTex.Domain.Models.Department", b =>
@@ -85,7 +88,7 @@ namespace RandTex.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department", (string)null);
+                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("RandTex.Domain.Models.Employee", b =>
@@ -120,7 +123,7 @@ namespace RandTex.DataAccess.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Employee", (string)null);
+                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("RandTex.Domain.Models.EmployeeDetails", b =>
@@ -155,7 +158,7 @@ namespace RandTex.DataAccess.Migrations
                     b.HasIndex("EmployeeId")
                         .IsUnique();
 
-                    b.ToTable("EmployeeDetails", (string)null);
+                    b.ToTable("EmployeeDetails");
                 });
 
             modelBuilder.Entity("RandTex.Domain.Models.CallRecords", b =>

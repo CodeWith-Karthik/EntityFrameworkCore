@@ -14,5 +14,11 @@ namespace RandTex.Domain.ApplicationEnums
             Female = 1,
             Others = 2
         }
+
+        public enum CallType
+        {
+            Incoming = 0,
+            Outgoing = 1,
+        }
     }
 }

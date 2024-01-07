@@ -20,8 +20,11 @@ namespace RandTex.DataAccess.Common
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeDetailsConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new CallRecordsConfiguration());
         }
 
         public DbSet<Department> Department { get; set; }
@@ -29,5 +32,9 @@ namespace RandTex.DataAccess.Common
         public DbSet<Employee> Employee { get; set; }
 
         public DbSet<EmployeeDetails> EmployeeDetails { get; set; }
+
+        public DbSet<Customer> Customer { get; set; }
+
+        public DbSet<CallRecords> CallRecords { get; set; }
     }
 }

@@ -32,6 +32,8 @@ namespace RandTex.Domain.Models
 
         public virtual EmployeeDetails EmployeeDetails { get; set; }
 
+        public virtual ICollection<CallRecords> CallRecords { get; set; }
+
         public Employee()
         {
             

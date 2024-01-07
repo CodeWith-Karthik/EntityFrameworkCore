@@ -62,6 +62,27 @@ namespace RandTex.DataAccess.Common
 
                 await _dbContext.SaveChangesAsync();
             }
+
+            if (!_dbContext.Customer.Any())
+            {
+
+                _dbContext.Customer.AddRange(
+                    new Customer("Vikram"),
+                    new Customer("Siddharth"),
+                    new Customer("Priya"),
+                    new Customer("Aishwarya"),
+                    new Customer("Kavya"),
+                    new Customer("Naveen"),
+                    new Customer("Shruti"),
+                    new Customer("Varun"),
+                    new Customer("Meera"),
+                    new Customer("Sneha"),
+                    new Customer("Varun"),
+                    new Customer("Arjun"));
+
+                await _dbContext.SaveChangesAsync();
+
+            }
         }
     }
 }
