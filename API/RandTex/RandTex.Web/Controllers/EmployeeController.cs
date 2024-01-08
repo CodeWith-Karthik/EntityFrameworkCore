@@ -55,6 +55,26 @@ namespace RandTex.Web.Controllers
             return Ok(employee);
         }
 
+        [HttpGet]
+        [Route("FilterByYearAndDepartment")]
+        public async Task<ActionResult> GetEmployeeByFilter(int year,int departmentId)
+        {
+            //var employee = await _dbContext.Employee.FirstAsync();
+
+            //var employee = await _dbContext.Employee.FirstAsync(x=>x.EmployedFrom == year);
+
+            //var employee = await _dbContext.Employee.FirstOrDefaultAsync(x => x.EmployedFrom == year);
+
+            var employee = await _dbContext.Employee.Where(x => x.EmployedFrom == year && x.DepartmentId == departmentId).ToListAsync();
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create(CreateEmployeeDto employeeDto)
         {
