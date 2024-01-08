@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RandTex.DataAccess.Configuration;
 using RandTex.Domain.Models;
 using System;
@@ -14,6 +15,16 @@ namespace RandTex.DataAccess.Common
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder
+                .LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
