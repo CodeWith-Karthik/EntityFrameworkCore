@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using RandTex.Application.Common;
 using RandTex.DataAccess.Common;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     //options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; 
+});
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

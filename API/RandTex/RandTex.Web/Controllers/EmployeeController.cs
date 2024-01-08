@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RandTex.Application.DTO.Employee;
+using RandTex.Application.ViewModels;
 using RandTex.DataAccess.Common;
 using RandTex.Domain.Models;
 
@@ -12,10 +14,12 @@ namespace RandTex.Web.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(ApplicationDbContext dbContext)
+        public EmployeeController(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -24,6 +28,17 @@ namespace RandTex.Web.Controllers
             var employees = await _dbContext.Employee.ToListAsync();
 
             return Ok(employees);
+        }
+
+        [HttpGet]
+        [Route("ListWithDetails")]
+        public async Task<ActionResult> GetDetails()
+        {
+            var employees = await _dbContext.Employee.Include(x=>x.Department).Include(x=>x.EmployeeDetails).ToListAsync();
+
+            var empMapped = _mapper.Map<List<EmployeeDetailsVM>>(employees);
+
+            return Ok(empMapped);
         }
 
         [HttpGet]
