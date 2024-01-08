@@ -22,6 +22,13 @@ namespace RandTex.Application.Common
                 .ForMember(x => x.PhoneNo, opt => opt.MapFrom(source => source.EmployeeDetails.PhoneNo))
                 .ForMember(x => x.EmailAddress, opt => opt.MapFrom(source => source.EmployeeDetails.EmailAddress))
                 .ForMember(x => x.Address, opt => opt.MapFrom(source => source.EmployeeDetails.Address));
+
+            CreateMap<CallRecords, CallRecordsVM>()
+                 .ForMember(x => x.EmployeeId, opt => opt.MapFrom(source => source.Employee.Id))
+                 .ForMember(x => x.EmployeeName, opt => opt.MapFrom(source => source.Employee.LastName + " " + source.Employee.FirstName))
+                 .ForMember(x => x.CustomerId, opt => opt.MapFrom(source => source.Customer.Id))
+                 .ForMember(x => x.CustomerName, opt => opt.MapFrom(source => source.Customer.Name))
+                 .ForMember(x => x.CallType, opt => opt.MapFrom(source => source.CallType));
         }
     }
 }

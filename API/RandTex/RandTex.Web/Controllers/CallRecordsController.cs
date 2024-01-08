@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RandTex.Application.DTO.CallRecords;
+using RandTex.Application.ViewModels;
 using RandTex.DataAccess.Common;
 using RandTex.Domain.Models;
 
@@ -13,17 +15,22 @@ namespace RandTex.Web.Controllers
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public CallRecordsController(ApplicationDbContext dbContext)
+        private readonly IMapper _mapper;
+
+        public CallRecordsController(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var callRecordss = await _dbContext.CallRecords.ToListAsync();
+            var callRecords = await _dbContext.CallRecords.Include(x=>x.Employee).Include(x=>x.Customer).ToListAsync();
 
-            return Ok(callRecordss);
+            var calls = _mapper.Map<List<CallRecordsVM>>(callRecords);
+
+            return Ok(calls);
         }
 
         [HttpGet]
