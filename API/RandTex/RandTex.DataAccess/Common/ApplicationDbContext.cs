@@ -36,11 +36,15 @@ namespace RandTex.DataAccess.Common
             modelBuilder.ApplyConfiguration(new EmployeeDetailsConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new CallRecordsConfiguration());
+
+            modelBuilder.Entity<EmployeeData>().HasNoKey().ToView("GetEmployees");
         }
 
         public DbSet<Department> Department { get; set; }
 
         public DbSet<Employee> Employee { get; set; }
+
+        public DbSet<EmployeeData> EmployeeData { get; set; }
 
         public DbSet<EmployeeDetails> EmployeeDetails { get; set; }
 

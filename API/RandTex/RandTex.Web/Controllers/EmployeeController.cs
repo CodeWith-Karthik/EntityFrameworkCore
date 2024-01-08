@@ -47,6 +47,26 @@ namespace RandTex.Web.Controllers
         }
 
         [HttpGet]
+        [Route("ByRawSql")]
+        public ActionResult GetEmployees()
+        {
+            var employees = _dbContext.Employee.FromSqlRaw("select * from dbo.Employee where employedFrom ='2024'").ToList();
+
+            return Ok(employees);
+        }
+
+
+        [HttpGet]
+        [Route("EmployeeDataView")]
+        public ActionResult GetEmployeeData()
+        {
+            var employees = _dbContext.EmployeeData.ToList();
+
+            return Ok(employees);
+        }
+
+
+        [HttpGet]
         [Route("ListWithDetails")]
         public async Task<ActionResult> GetDetails()
         {
