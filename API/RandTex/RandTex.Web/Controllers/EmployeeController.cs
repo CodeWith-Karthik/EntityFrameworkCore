@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using RandTex.Application.DTO.Employee;
 using RandTex.Application.ViewModels;
@@ -84,6 +85,21 @@ namespace RandTex.Web.Controllers
             var employee = await _dbContext.Employee.FirstOrDefaultAsync(x=>x.Id == employeeId);
 
             if(employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
+
+
+        [HttpGet]
+        [Route("ByEmployeeIdSP")]
+        public async Task<ActionResult> GetEmployeeByIDSP(int employeeId)
+        {
+            var employee = _dbContext.Employee.FromSqlRaw("EXEC GetEmployeeById @EmployeeId", new SqlParameter("@EmployeeId",employeeId));
+
+            if (employee == null)
             {
                 return NotFound();
             }
