@@ -130,6 +130,13 @@ namespace RandTex.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(CreateEmployeeDto employeeDto)
         {
+            var result = _dbContext.Department.Any(x => x.Id == employeeDto.DepartmentId);
+
+            if (!result)
+            {
+                return BadRequest("Invalid Department Id");
+            }
+
             Employee employee = new Employee
             {
                 FirstName = employeeDto.FirstName,
