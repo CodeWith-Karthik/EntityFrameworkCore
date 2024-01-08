@@ -6,6 +6,7 @@ using RandTex.Application.DTO.Employee;
 using RandTex.Application.ViewModels;
 using RandTex.DataAccess.Common;
 using RandTex.Domain.Models;
+using static RandTex.Domain.ApplicationEnums.ApplicationEnum;
 
 namespace RandTex.Web.Controllers
 {
@@ -23,9 +24,24 @@ namespace RandTex.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult<Employee>> Get(Order order)
         {
-            var employees = await _dbContext.Employee.ToListAsync();
+            List<Employee> employees = new List<Employee>();
+
+            switch (order)
+            {
+                case Order.Asc:
+
+                    employees = await _dbContext.Employee.OrderBy(x=>x.EmployedFrom).ToListAsync();
+
+                    break;
+
+                case Order.Desc:
+
+                    employees = await _dbContext.Employee.OrderByDescending(x => x.EmployedFrom).ToListAsync();
+
+                    break;
+            }
 
             return Ok(employees);
         }

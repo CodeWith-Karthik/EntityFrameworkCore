@@ -20,5 +20,11 @@ namespace RandTex.Domain.ApplicationEnums
             Incoming = 0,
             Outgoing = 1,
         }
+
+        public enum Order
+        {
+            Asc = 0,
+            Desc = 1,
+        }
     }
 }
